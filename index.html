@@ -43,7 +43,7 @@
                       </div>
             </div>
             <div class="contacts bg-white overflow-auto">
-                <div class="cnt-contact d-flex justify-content-between">
+                <div v-for="(i=0; i < 5; i++)" class="cnt-contact d-flex justify-content-between">
                   <div class="ps-4 contact py-2 container d-flex align-items-center">
                     <div class="contact-picture">
                         <img class="c-avatar" src="img/avatar_1.jpg" alt="">
@@ -57,6 +57,7 @@
                     <span>12:00</span>
                   </div>
                 </div>
+               
             </div>
         </div>
         <div class="right"></div>  
