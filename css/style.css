@@ -43,6 +43,24 @@ body {
     color:var(--alertn)
 }
 
+.search {
+    background-color: #fafafa;
+}
+
+#my-search {
+    background-color: white;
+    color:grey;
+    padding: 0.3rem 1.75rem;
+}
+
+#my-search i {
+    padding:0;
+}
+
+#my-input {
+    padding: 0.225rem .75rem;
+}
+
 .left {
     width: 40%;
     height: 100%;
