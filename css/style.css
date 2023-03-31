@@ -16,10 +16,14 @@ body {
 
 #app {
     margin:0 auto;
-    width: 1200px;
+    width: 1400px;
     margin-top: 20px;
     height: 95vh;
     background-color: red;
+}
+
+.text-lightgrey {
+    color:#c5c8cd;
 }
 
 .top-bar {
@@ -84,6 +88,15 @@ body {
     border-radius: 50%;
 }
 
+.c-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.contact-info {
+    line-height: 10px;
+}
 
 
 
