@@ -1,6 +1,7 @@
 :root {
     --greyapp:#eaeaea;
     --greyicon:#b1b1b1;
+    --alertn:#8edafc;
 }
 
 body {
@@ -23,6 +24,23 @@ body {
 
 .top-bar {
     background-color: var(--greyapp);
+}
+
+.alert-ntf {
+    background-color: var(--alertn);
+}
+
+.ntf-text {
+    line-height: 19px;
+}
+
+.bell {
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color:var(--alertn)
 }
 
 .left {
