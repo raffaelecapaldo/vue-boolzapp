@@ -51,8 +51,7 @@
                 </div>
             </div>
             <div class="contacts bg-white">
-                <div v-for="(contact,index) in contacts" :key="contact.id"
-                    class="cnt-contact d-flex justify-content-between">
+                <div @click="showChat(contact.id)" v-for="(contact,index) in contacts" :key="contact.id" class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
@@ -69,15 +68,16 @@
 
             </div>
         </div>
-        <div class="right">
+        <div class="right" >
+            <div class="activeChat" :class="{active: contact.visible}" v-for="(contact,index) in contacts" :key="contact.id">
             <div class="top-bar py-3 container-fluid d-flex align-items-center justify-content-between">
                 <div class="ps-1 contact py-2 container d-flex justify-content-between align-items-center">
                     <div class="chat-contact d-flex align-items-center">
                         <div class="contact-picture">
-                            <img class="ui-avatar" src="img/avatar_1.jpg" alt="">
+                            <img class="ui-avatar" :src="contact.avatar" :alt="contact.name">
                         </div>
                         <div class="contact-info ms-3  mt-2 ">
-                            <h5 class="fs-6">Mario</h5>
+                            <h5 class="fs-6">{{contact.name}}</h5>
                             <p class="small text-secondary">Ultimo accesso oggi alle</p>
 
                         </div>
@@ -92,13 +92,9 @@
             </div>
             <div class="chatbox">
                 <div class="messages d-flex flex-column mt-3 ">
-                    <div class="sended msg">
-                        Ciao, come va?
+                    <div :class="{sended: message.status === 'sent', received: message.status === 'received' }" v-for="message in contact.messages" class="msg">
+                        {{message.message}}
                         <span class="time-msg text-lightgrey">12:00</span>
-                    </div>
-                    <div class="received msg">
-                        Male, grazie.
-                        <span class="time-msg text-lightgrey ">12:00</span>
                     </div>
                 </div>
 
@@ -114,6 +110,7 @@
                     <button><i class="fa-solid fa-microphone fs-3"></i></button>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     </div>
