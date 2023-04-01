@@ -202,7 +202,7 @@ createApp({
                 "Hai sbagliato numero, qui risponde Marco Acciarri",
                 "Hai sbagliato numero, qui risponde Samuel Panicucci",
             ]; //Array con varie risposte
-            response = this.getRndInteger(0, responses.length) //Genera indice casuale 
+            response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
             newReceived = {
                 date: "",
                 message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
