@@ -209,12 +209,13 @@ createApp({
                 status: "received"
             }
             for (contact of this.contacts) { //Per ogni contatto
-                if (contact.visible === true) { //Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
+                if (contact.visible === true) {//Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
+                    visiblenow = contact.id //Salva con chi stai parlando
                     contact.messages.push(newMessage); //Aggiungi newMessage
                     this.textMessage = "";
                     setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                         for (contact of this.contacts)
-                            if (contact.visible === true) {
+                            if (contact.id === visiblenow) {//Inserisce messaggio ricevuto nell'array di chi stavi parlando (nel caso cambiassi chat prima del secondo di risposta)
                                 contact.messages.push(newReceived);
                             }
                     }, 1000);
