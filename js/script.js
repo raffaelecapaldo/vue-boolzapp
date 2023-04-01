@@ -1,16 +1,16 @@
-const { createApp } = Vue
+const {
+    createApp
+} = Vue
 
 createApp({
     data() {
         return {
-            contacts: [
-                {
+            contacts: [{
                     id: 1,
                     name: 'Michele',
                     avatar: './img/avatar_1.jpg',
                     visible: true,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Hai portato a spasso il cane?',
                             status: 'sent'
@@ -32,8 +32,7 @@ createApp({
                     name: 'Fabio',
                     avatar: './img/avatar_2.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '20/03/2020 16:30:00',
                             message: 'Ciao come stai?',
                             status: 'sent'
@@ -55,8 +54,7 @@ createApp({
                     name: 'Samuele',
                     avatar: './img/avatar_3.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '28/03/2020 10:10:40',
                             message: 'La Marianna va in campagna',
                             status: 'received'
@@ -78,8 +76,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: './img/avatar_4.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Lo sai che ha aperto una nuova pizzeria?',
                             status: 'sent'
@@ -96,8 +93,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: './img/avatar_5.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Ricordati di chiamare la nonna',
                             status: 'sent'
@@ -114,8 +110,7 @@ createApp({
                     name: 'Claudia',
                     avatar: './img/avatar_5.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Ciao Claudia, hai novità?',
                             status: 'sent'
@@ -137,8 +132,7 @@ createApp({
                     name: 'Federico',
                     avatar: './img/avatar_7.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Fai gli auguri a Martina che è il suo compleanno!',
                             status: 'sent'
@@ -155,8 +149,7 @@ createApp({
                     name: 'Davide',
                     avatar: './img/avatar_8.jpg',
                     visible: false,
-                    messages: [
-                        {
+                    messages: [{
                             date: '10/01/2020 15:30:55',
                             message: 'Ciao, andiamo a mangiare la pizza stasera?',
                             status: 'received'
@@ -174,8 +167,9 @@ createApp({
                     ],
                 }
             ],
-            newMessage:{},
-            textMessage:""
+            newMessage: {},
+            textMessage: "",
+            newReceived: {}
         }
     },
     methods: {
@@ -183,25 +177,54 @@ createApp({
             for (contact of this.contacts) {
                 if (contact.id === key) {
                     contact.visible = true;
-                }
-                else {
+                } else {
                     contact.visible = false;
                 }
 
             }
         },
         sendMessage() {
-            newMessage = {
-                date:"",
-                message:this.textMessage,
-                status:"sent"
+            if (this.textMessage.length === 0) { //Interrompe il codice se il campo di invio è vuoto
+                return
             }
-            for (contact of this.contacts) {
-                if (contact.visible === true)
-                contact.messages.push(newMessage);
-                this.textMessage="";
+            newMessage = {
+                date: "",
+                message: this.textMessage,
+                status: "sent"
+            }
+            responses = ["Ok", "Certo, ci sentiamo!",
+                "Va bene, come vuoi",
+                "Perché mi parli così?",
+                "Non capisco come ragioni",
+                "Non dimenticare di avvisare Clelia Fradella",
+                "Non mi interessa, quando è pronto il dolce?",
+                "Bastaaaa, stacca da questo cellulare",
+                "Hai sbagliato numero, qui risponde Marco Acciarri",
+                "Hai sbagliato numero, qui risponde Samuel Panicucci",
+            ]; //Array con varie risposte
+            response = this.getRndInteger(0, responses.length) //Genera indice casuale 
+            newReceived = {
+                date: "",
+                message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
+                status: "received"
+            }
+            for (contact of this.contacts) { //Per ogni contatto
+                if (contact.visible === true) { //Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
+                    contact.messages.push(newMessage); //Aggiungi newMessage
+                    this.textMessage = "";
+                    setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
+                        for (contact of this.contacts)
+                            if (contact.visible === true) {
+                                contact.messages.push(newReceived);
+                            }
+                    }, 1000);
+                }
+
             }
 
+        },
+        getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
     }
 
