@@ -148,6 +148,7 @@ body {
 
 .msg {
     margin-top: 20px;
+    margin-bottom:5px;
     width: fit-content;
     height: fit-content;
     padding-top:10px;

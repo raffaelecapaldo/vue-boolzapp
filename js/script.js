@@ -174,6 +174,8 @@ createApp({
                     ],
                 }
             ],
+            newMessage:{},
+            textMessage:""
         }
     },
     methods: {
@@ -187,6 +189,19 @@ createApp({
                 }
 
             }
+        },
+        sendMessage() {
+            newMessage = {
+                date:"",
+                message:this.textMessage,
+                status:"sent"
+            }
+            for (contact of this.contacts) {
+                if (contact.visible === true)
+                contact.messages.push(newMessage);
+                this.textMessage="";
+            }
+
         }
     }
 
