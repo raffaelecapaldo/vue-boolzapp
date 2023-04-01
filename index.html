@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="contacts bg-white">
-                <div @click="showChat(contact.id)" v-for="(contact,index) in contacts" :key="contact.id" class="cnt-contact d-flex justify-content-between">
+                <div @click="showChat(contact.id)" v-for="(contact,index) in contacts" :key="contact.id" :class="{active: contact.visible}" class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="right-contact pe-2 pt-1 small text-lightgrey">
-                        <span>12:00</span>
+                        <span>{{contact.messages[contact.messages.length - 1].date.substring(11, 16)}}</span>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                         </div>
                         <div class="contact-info ms-3  mt-2 ">
                             <h5 class="fs-6">{{contact.name}}</h5>
-                            <p class="small text-secondary">Visto l'ultima volta:  {{contact.messages[contact.messages.length - 1].date}} </p>
+                            <p class="small text-secondary">Visto l'ultima volta il {{contact.messages[contact.messages.length - 1].date}} </p>
 
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="messages d-flex flex-column mt-3 ">
                     <div :class="{sended: message.status === 'sent', received: message.status === 'received' }" v-for="message in contact.messages" class="msg">
                         {{message.message}}
-                        <span class="time-msg text-lightgrey">12:00</span>
+                        <span class="time-msg text-lightgrey">{{message.date.substring(11, 16)}}</span>
                     </div>
                 </div>
 

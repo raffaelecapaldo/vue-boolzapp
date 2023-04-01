@@ -111,7 +111,7 @@ body {
     cursor:pointer;
 }
 
-.cnt-contact:hover {
+.cnt-contact:hover, .cnt-contact.active {
     background-color:#e9ebeb;
 }
 

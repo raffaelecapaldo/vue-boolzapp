@@ -171,7 +171,8 @@ createApp({
             newMessage: {},
             textMessage: "",
             newReceived: {},
-            timeNow: ""
+            timeNow: "",
+            hourNow: DateTime.now().toLocaleString(DateTime.DATE_SHORT)//Ora formattata
         }
     },
     methods: {
@@ -186,8 +187,8 @@ createApp({
             }
         },
         sendMessage() {
-            this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');
-            if (this.textMessage.length === 0) { //Interrompe il codice se il campo di invio è vuoto
+            this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Data formattata come quella già presente nell'array principale
+            if (this.textMessage.trim().length === 0) { //Interrompe il codice se il campo di invio è vuoto (trim per non accettare una stringa di soli spazi)
                 return
             }
             newMessage = {
@@ -215,13 +216,12 @@ createApp({
                     setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                         for (contact of this.contacts)
                             if (contact.id === visiblenow) {//Inserisce messaggio ricevuto nell'array di chi stavi parlando (nel caso cambiassi chat prima del secondo di risposta)
-                                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');
+                                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
                                 newReceived = {
                                     date: this.timeNow,
                                     message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
                                     status: "received"
                                 }
-                                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');
                                 contact.messages.push(newReceived);
                             }
                     }, 1000);
@@ -232,7 +232,8 @@ createApp({
         },
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+        },
+       
     }
 
 }).mount('#app')
