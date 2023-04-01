@@ -185,8 +185,7 @@ body {
 }
 
 /* RESET */
-.controls-icon button,
-.sendmsg-ui button {
+.controls-icon button {
     cursor: pointer;
     background-color: transparent;
     border-width: 0;
