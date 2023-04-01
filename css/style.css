@@ -6,7 +6,6 @@
 
 body {
     display: flex;
-    overflow: hidden;
     font-family: 'Lato', sans-serif;
     background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
     width: 100%;
@@ -19,7 +18,6 @@ body {
     width: 1400px;
     margin-top: 20px;
     height: 95vh;
-    background-color: red;
 }
 
 .text-lightgrey {
@@ -28,10 +26,12 @@ body {
 
 .top-bar {
     background-color: var(--greyapp);
+    height: 82px;
 }
 
 .alert-ntf {
     background-color: var(--alertn);
+    height: 98px;
 }
 
 .ntf-text {
@@ -49,6 +49,7 @@ body {
 
 .search {
     background-color: #fafafa;
+    height: 49px;
 }
 
 #my-search {
@@ -67,8 +68,10 @@ body {
 
 .left {
     width: 40%;
-    height: 100%;
     background-color: white;
+    height: 100%;
+    
+
 }
 
 .controls-icon i {
@@ -100,6 +103,32 @@ body {
 
 .cnt-contact {
  border-bottom:1px solid #f1f2f5d3;
+}
+
+.contacts div:last-child {
+    border-bottom:none;
+}
+
+.contacts {
+    overflow-y: scroll;
+    height: calc(100% - (229px));
+}
+
+.ui-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.left .top-bar {
+    border-right:1px solid #d6d6d6;
+
+}
+
+.chatbox {
+    height: calc(100% - 82px - 65px );
+    overflow-y: scroll;
+    background-image: url("../img/mine.jpg");
 }
 
 
