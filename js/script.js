@@ -1,3 +1,4 @@
+const DateTime = luxon.DateTime;
 const {
     createApp
 } = Vue
@@ -169,7 +170,8 @@ createApp({
             ],
             newMessage: {},
             textMessage: "",
-            newReceived: {}
+            newReceived: {},
+            timeNow: DateTime.local()
         }
     },
     methods: {
@@ -184,11 +186,13 @@ createApp({
             }
         },
         sendMessage() {
+            dateFormatted = this.timeNow.toFormat('dd/MM/yyyy HH:mm:ss');
+
             if (this.textMessage.length === 0) { //Interrompe il codice se il campo di invio è vuoto
                 return
             }
             newMessage = {
-                date: "",
+                date: dateFormatted,
                 message: this.textMessage,
                 status: "sent"
             }
@@ -204,7 +208,7 @@ createApp({
             ]; //Array con varie risposte
             response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
             newReceived = {
-                date: "",
+                date: dateFormatted,
                 message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
                 status: "received"
             }
