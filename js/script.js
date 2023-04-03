@@ -247,13 +247,7 @@ createApp({
             }
         },
         deleteMsg(i) {
-            for (contact of this.contacts) {
-                if (contact.messages === 1) {
-                    return
-                }
-                if (contact.visible)
-                    contact.messages.splice(i, 1);
-            }
+            this.contacts[this.activeChat].messages.splice(i, 1)
         }
     },
     created() {
