@@ -239,7 +239,7 @@ createApp({
                 this.searchedContacts = this.contacts;//searchedContacts contiene tutto contacts
             } else {
                 this.searchedContacts = this.contacts.filter(contact => {//Altrimenti filtra
-                    if (contact.name.toLowerCase().includes(this.nameSearch)) {//Con il contenuto di nameSearch
+                    if (contact.name.toLowerCase().includes(this.nameSearch.toLowerCase())) {//Con il contenuto di nameSearch
                         return true;
                     }
                 }
