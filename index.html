@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="contacts bg-white">
-                <div @click="showChat(contact.id)" v-for="(contact,index) in searchedContacts" :key="contact.id"
-                    :class="{active: contact.visible}" class="cnt-contact d-flex justify-content-between">
+                <div @click="showChat(index)" v-for="(contact,index) in searchedContacts" :key="contact.id"
+                    :class="{active: index === activeChat}" class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
@@ -76,18 +76,17 @@
             </div>
         </div>
         <div class="right" :class="{mobilenone: !mobilechatSelected}">
-            <div class="boxChat" :class="{active: contact.visible}" v-for="(contact,index) in contacts"
-                :key="contact.id">
+            <div class="boxChat">
                 <div class="top-bar py-3 container-fluid d-flex align-items-center justify-content-between">
                     <div class="ps-1 contact py-2 container d-flex justify-content-between align-items-center">
                         <div class="chat-contact d-flex align-items-center">
                             <div class="contact-picture">
                                 <button @click="mobilechatSelected = false" class="chatback me-2"><i class="p-2 fa-solid fa-angle-left"></i></button>
-                                <img class="ui-avatar" :src="contact.avatar" :alt="contact.name">
+                                <img class="ui-avatar" :src="contacts[activeChat].avatar" :alt="contacts[activeChat].name">
                             </div>
                             <div class="contact-info ms-3  mt-2 ">
-                                <h5 class="fs-6">{{contact.name}}</h5>
-                                <p class="small text-secondary">Visto l'ultima volta il <p class="small text-secondary time">{{contact.messages[contact.messages.length - 1].date}}</p>
+                                <h5 class="fs-6">{{contacts[activeChat].name}}</h5>
+                                <p class="small text-secondary">Visto l'ultima volta il <p class="small text-secondary time">{{contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date}}</p>
                                      </p>
 
                             </div>
@@ -102,8 +101,7 @@
                 </div>
                 <div class="chatbox">
                     <div class="messages d-flex flex-column mt-3 ">
-                        <template v-for="(message,index) in contact.messages">
-                            <template v-if="contact.messages.length > 0"> <!-- CON 1 FUNZIONA, CON 0 NO -->
+                        <template v-for="(message,index) in contacts[activeChat].messages">
                                 <div :class="{sended: message.status === 'sent', received: message.status === 'received' }"
                                     class="msg">
                                     {{message.message}}

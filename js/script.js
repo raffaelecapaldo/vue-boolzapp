@@ -1,7 +1,7 @@
 const appHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
 window.addEventListener('resize', appHeight)
 appHeight() //Non riuscivo a vedere la pagina interamente su mobile a causa della UI del browser
-            //soluzione da StackOverflow
+//soluzione da StackOverflow
 
 const DateTime = luxon.DateTime;
 const {
@@ -179,20 +179,14 @@ createApp({
             timeNow: "",
             nameSearch: "",
             searchedContacts: [{}],
-            mobilechatSelected: false
+            mobilechatSelected: false,
+            activeChat: 0
 
         }
     },
     methods: {
         showChat(key) {
-            for (contact of this.contacts) {
-                if (contact.id === key) {
-                    contact.visible = true;
-                } else {
-                    contact.visible = false;
-                }
-                this.mobilechatSelected = true;
-            }
+            this.activeChat = key;
         },
         sendMessage() {
             this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Data formattata come quella già presente nell'array principale
@@ -216,26 +210,25 @@ createApp({
             ]; //Array con varie risposte
             response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
 
-            for (contact of this.contacts) { //Per ogni contatto
-                if (contact.visible === true) {//Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
-                    visiblenow = contact.id //Salva con chi stai parlando
-                    contact.messages.push(newMessage); //Aggiungi newMessage
-                    this.textMessage = "";
-                    setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
-                        for (contact of this.contacts)
-                            if (contact.id === visiblenow) {//Inserisce messaggio ricevuto nell'array di chi stavi parlando (nel caso cambiassi chat prima del secondo di risposta)
-                                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
-                                newReceived = {
-                                    date: this.timeNow,
-                                    message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
-                                    status: "received"
-                                }
-                                contact.messages.push(newReceived);
-                            }
-                    }, 1000);
-                }
+            //Per ogni contatto
+            //Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
+            this.contacts[this.activeChat].messages.push(newMessage); //Aggiungi newMessage
+            this.textMessage = "";
+            setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
 
-            }
+                //Inserisce messaggio ricevuto nell'array di chi stavi parlando (nel caso cambiassi chat prima del secondo di risposta)
+                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
+                newReceived = {
+                    date: this.timeNow,
+                    message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
+                    status: "received"
+                }
+                this.contacts[this.activeChat].messages.push(newReceived);
+
+            }, 1000);
+
+
+
 
         },
         getRndInteger(min, max) {
@@ -259,7 +252,7 @@ createApp({
                     return
                 }
                 if (contact.visible)
-                contact.messages.splice(i, 1);
+                    contact.messages.splice(i, 1);
             }
         }
     },
