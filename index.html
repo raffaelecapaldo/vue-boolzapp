@@ -95,7 +95,7 @@
                         <div class="controls-icon fs-4 ">
                             <button><i class="me-3 fa-solid fa-magnifying-glass"></i></button>
                             <button><i class="me-4 fa-solid fa-paperclip "></i></button>
-                            <button><i class="me-3 fa-solid fa-ellipsis-vertical"></i></button>
+                            <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@
                             id="sendmsg" placeholder="Scrivi un messaggio">
                     </div>
                     <div class="controls-icon">
-                        <button><i class="fa-solid fa-microphone fs-3"></i></button>
+                        <button><i class="fa-solid fs-3" :class="[textMessage.trim().length > 0 ? 'fa-paper-plane text-success' : 'fa-microphone ']"></i></button>
                     </div>
                 </div>
             </div>
