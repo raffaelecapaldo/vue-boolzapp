@@ -11,8 +11,8 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
     width: 100%;
-    height: var(--app-height);
-    /* DAL JS */
+    height: 95dvh;  /* dvh al posto della soluzione con JS */
+    
 
 }
 
@@ -299,6 +299,9 @@ body {
         margin: 0;
     }
 
+    body {
+        height: 100dvh;
+    }
 
 
     .left {

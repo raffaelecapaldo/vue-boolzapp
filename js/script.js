@@ -1,14 +1,5 @@
-const appHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
-window.addEventListener('resize', appHeight)
-appHeight() //Non riuscivo a vedere la pagina interamente su mobile a causa della UI del browser
-//soluzione da StackOverflow
-
-
-
 const DateTime = luxon.DateTime;
-const {
-    createApp
-} = Vue
+const {createApp} = Vue
 
 
 
