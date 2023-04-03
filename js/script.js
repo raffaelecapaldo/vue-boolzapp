@@ -180,7 +180,8 @@ createApp({
             nameSearch: "",
             searchedContacts: [{}],
             mobilechatSelected: false,
-            activeChat: 0
+            activeChat: 0,
+            writing: false
 
         }
     },
@@ -212,6 +213,7 @@ createApp({
             response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
             this.contacts[this.activeChat].messages.push(newMessage); //Aggiungi newMessage
             this.textMessage = "";
+            this.writing = "start";//Sta scrivendo
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                 this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
                 newReceived = {
@@ -220,7 +222,12 @@ createApp({
                     status: "received"
                 }
                 this.contacts[this.activeChat].messages.push(newReceived);
+                this.writing = "ended"//Ha finito di scrivere (Online)
             }, 1000);
+            setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
+                this.writing = false;//Ha effettuato logout (mostra data)
+
+            }, 3000);
 
         },
         getRndInteger(min, max) {
