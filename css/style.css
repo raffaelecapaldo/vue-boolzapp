@@ -318,4 +318,8 @@ body {
         margin-left: 0;
         max-width: unset;
     }
+
+    .cnt-contact.active {
+        background-color: white; /* Non serve sulla versione mobile */
+    }
 }

@@ -187,6 +187,7 @@ createApp({
     methods: {
         showChat(key) {
             this.activeChat = key;
+            this.mobilechatSelected = true;
         },
         sendMessage() {
             this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Data formattata come quella già presente nell'array principale
