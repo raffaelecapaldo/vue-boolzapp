@@ -4,6 +4,8 @@
     --alertn: #8edafc;
 }
 
+
+
 body {
     display: flex;
     font-family: 'Lato', sans-serif;
@@ -87,7 +89,7 @@ body {
 .boxChat {
     width: 100%;
     height: 100%;
-    display:none;
+    display: none;
 }
 
 .avatar {
@@ -108,11 +110,12 @@ body {
 
 .cnt-contact {
     border-bottom: 1px solid #f1f2f5d3;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.cnt-contact:hover, .cnt-contact.active {
-    background-color:#e9ebeb;
+.cnt-contact:hover,
+.cnt-contact.active {
+    background-color: #e9ebeb;
 }
 
 .contacts div:last-child {
@@ -120,7 +123,7 @@ body {
 }
 
 .contacts {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100% - (229px));
 }
 
@@ -147,23 +150,23 @@ body {
 }
 
 .arrow-msg {
-    position:absolute;
-    top:0;
-    right:10px;
-    font-size:10px;
-    cursor:pointer;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 10px;
+    cursor: pointer;
 }
 
 .msg-dropdown {
     width: 130px;
     height: 80px;
-    position:absolute;
-    right:-30px;
-    top:20px;
+    position: absolute;
+    right: -30px;
+    top: 20px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    z-index:1000;
-    display:none !important;
+    z-index: 1000;
+    display: none !important;
 }
 
 
@@ -171,8 +174,8 @@ body {
     padding: 5px !important;
 }
 
-.msgshow{
-    display:flex !important;
+.msgshow {
+    display: flex !important;
 }
 
 .msg-dropdown button:hover {
@@ -181,13 +184,13 @@ body {
 
 .msg {
     margin-top: 20px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
     width: fit-content;
     height: fit-content;
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-right:80px;
-    padding-left:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 80px;
+    padding-left: 10px;
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -245,5 +248,21 @@ body {
 }
 
 .active {
-    display:block;
+    display: block;
 }
+
+::-webkit-scrollbar {
+    width: 5px
+}
+
+::-webkit-scrollbar-track {
+    background: #cccccc;
+    border-radius: 0px
+}
+
+::-webkit-scrollbar-thumb {
+    background: #106b0a;
+    border-radius: 0px
+}
+
+@media screen and (max-width:)
