@@ -306,4 +306,15 @@ body {
     .chatback {
         display:inline-block;
     }
+
+    .container {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 0;
+        margin-left: 0;
+        max-width: unset;
+    }
 }
