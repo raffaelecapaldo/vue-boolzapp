@@ -146,6 +146,14 @@ body {
     margin: 0 auto;
 }
 
+.arrow-msg {
+    position:absolute;
+    top:0;
+    right:10px;
+    font-size:10px;
+    cursor:pointer;
+}
+
 .msg {
     margin-top: 20px;
     margin-bottom:5px;

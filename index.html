@@ -98,6 +98,7 @@
                     <div :class="{sended: message.status === 'sent', received: message.status === 'received' }" v-for="message in contact.messages" class="msg">
                         {{message.message}}
                         <span class="time-msg text-lightgrey">{{message.date.substring(11, 16)}}</span>
+                        <span class="arrow-msg text-lightgrey"><i class="fa-solid fa-caret-down"></i></span>
                     </div>
                 </div>
 
