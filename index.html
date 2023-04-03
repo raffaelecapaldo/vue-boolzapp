@@ -15,6 +15,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
     <title>Boolzapp</title>
 </head>
@@ -25,7 +28,7 @@
             <div class="top-bar py-3 container-fluid d-flex justify-content-between align-items-center">
                 <div class="user-profile">
                     <img class="avatar" src="img/avatar_io.jpg" alt="">
-                    <span class="ms-2 fw-bold">Sofia </span>
+                    <span class="ms-2 fw-bold">Raffa</span>
                 </div>
                 <div class="controls-icon fs-4 ">
                     <button><i class="me-3 fa-solid fa-circle-notch"></i></button>
@@ -46,12 +49,12 @@
             <div class="container search py-2">
                 <div class="input-group">
                     <span class="input-group-text" id="my-search"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" id="my-input" class="form-control" placeholder="Cerca o inizia una nuova chat"
+                    <input @keyup="searchChat() "v-model="nameSearch "type="text" id="my-input" class="form-control" placeholder="Cerca o inizia una nuova chat"
                         aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="contacts bg-white">
-                <div @click="showChat(contact.id)" v-for="(contact,index) in contacts" :key="contact.id" :class="{active: contact.visible}" class="cnt-contact d-flex justify-content-between">
+                <div @click="showChat(contact.id)" v-for="(contact,index) in searchedContacts" :key="contact.id" :class="{active: contact.visible}" class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
@@ -117,8 +120,6 @@
 
 
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 

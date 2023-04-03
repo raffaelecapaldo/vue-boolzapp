@@ -172,7 +172,8 @@ createApp({
             textMessage: "",
             newReceived: {},
             timeNow: "",
-            hourNow: DateTime.now().toLocaleString(DateTime.DATE_SHORT)//Ora formattata
+            nameSearch: "",
+            searchedContacts: [{}]
         }
     },
     methods: {
@@ -233,7 +234,21 @@ createApp({
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
-       
+        searchChat() {
+            if (this.nameSearch === "") {//Se non si sta cercando nulla
+                this.searchedContacts = this.contacts;//searchedContacts contiene tutto contacts
+            } else {
+                this.searchedContacts = this.contacts.filter(contact => {//Altrimenti filtra
+                    if (contact.name.includes(this.nameSearch)) {//Con il contenuto di nameSearch
+                        return true;
+                    }
+                }
+                )
+            }
+        }
+    },
+    created() {
+        this.searchedContacts = this.contacts//Alla creazione, searchedContacts diventa contacts
     }
 
 }).mount('#app')
