@@ -245,6 +245,12 @@ createApp({
                 }
                 )
             }
+        },
+        deleteMsg(i) {
+            for (contact of this.contacts) {
+                if (contact.visible)
+                contact.messages.splice(i, 1);
+            }
         }
     },
     created() {

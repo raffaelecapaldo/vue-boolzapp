@@ -100,19 +100,24 @@
                 </div>
                 <div class="chatbox">
                     <div class="messages d-flex flex-column mt-3 ">
-                        <div :class="{sended: message.status === 'sent', received: message.status === 'received' }"
-                            v-for="message in contact.messages" class="msg">
-                            {{message.message}}
-                            <span class="time-msg text-lightgrey">{{message.date.substring(11, 16)}}</span>
-                            <span @click="message.dropdown = !message.dropdown" @click class="arrow-msg text-lightgrey"><i
-                                    class="fa-solid fa-caret-down"></i></span>
-                            <div class="controls-icon msg-dropdown d-flex justify-content-center flex-column gap-2"
-                                :class="{msgshow: message.dropdown}">
-                                <button>Message info</button>
-                                <button>Delete message</button>
+                        <template v-for="(message,index) in contact.messages">
+                            <template v-if="contact.messages.length > 0 ">
+                                <div :class="{sended: message.status === 'sent', received: message.status === 'received' }"
+                                    class="msg">
+                                    {{message.message}}
+                                    <span class="time-msg text-lightgrey">{{message.date.substring(11, 16)}}</span>
+                                    <span @click="message.dropdown = !message.dropdown" @click
+                                        class="arrow-msg text-lightgrey"><i class="fa-solid fa-caret-down"></i></span>
+                                    <div class="controls-icon msg-dropdown d-flex justify-content-center flex-column gap-2"
+                                        :class="{msgshow: message.dropdown}">
+                                        <button>Message info</button>
+                                        <button @click="deleteMsg(index)">Delete message</button>
 
-                            </div>
-                        </div>
+
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
                     </div>
 
                 </div>
