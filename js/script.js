@@ -173,7 +173,9 @@ createApp({
             newReceived: {},
             timeNow: "",
             nameSearch: "",
-            searchedContacts: [{}]
+            searchedContacts: [{}],
+            mobilechatSelected: false
+
         }
     },
     methods: {
@@ -184,7 +186,7 @@ createApp({
                 } else {
                     contact.visible = false;
                 }
-
+                this.mobilechatSelected = true;
             }
         },
         sendMessage() {
@@ -248,6 +250,9 @@ createApp({
         },
         deleteMsg(i) {
             for (contact of this.contacts) {
+                if (contact.messages === 1) {
+                    return
+                }
                 if (contact.visible)
                 contact.messages.splice(i, 1);
             }
