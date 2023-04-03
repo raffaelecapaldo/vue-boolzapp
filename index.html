@@ -15,9 +15,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+
 
     <link rel="stylesheet" href="css/style.css">
     <title>Boolzapp</title>
@@ -90,7 +92,8 @@
                                 <h5 class="fs-6">{{contacts[activeChat].name}}</h5>
                                 <p class="small text-secondary">Visto l'ultima volta il
                                 <p class="small text-secondary time">
-                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' : contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date}}</p>
+                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' :
+                                    contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date}}</p>
                                 </p>
 
                             </div>
@@ -127,11 +130,11 @@
                 </div>
                 <div class="sendmsg-ui d-flex align-items-center container justify-content-center">
                     <div class="controls-icon">
-                        <button><i class="fa-regular fa-face-smile fs-3"></i></button>
+                        <button ref="emoji" id="emoji-button"><i class="fa-regular fa-face-smile fs-3"></i></button>
                     </div>
                     <div class="input-send">
-                        <input @keyup.enter="sendMessage() " v-model="textMessage" type="text" name="sendmsg"
-                            id="sendmsg" placeholder="Scrivi un messaggio">
+                        <input @keyup.enter="sendMessage()" ref="input" class="textsend" v-model="textMessage"
+                            type="text" name="sendmsg" id="sendmsg" placeholder="Scrivi un messaggio">
                     </div>
                     <div class="controls-icon">
                         <button @click="sendMessage()"><i class="fa-solid fs-3"
@@ -144,8 +147,12 @@
     </div>
 
 
-
+    <script src="js/emojji.min.js"></script>
     <script src="js/script.js"></script>
+
+    <script>
+
+    </script>
 </body>
 
 </html>

@@ -11,7 +11,8 @@ body {
     font-family: 'Lato', sans-serif;
     background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
     width: 100%;
-    height: var(--app-height); /* DAL JS */
+    height: var(--app-height);
+    /* DAL JS */
 
 }
 
@@ -234,7 +235,7 @@ body {
 }
 
 .chatback {
-    display:none;
+    display: none;
 }
 
 /* RESET */
@@ -273,7 +274,15 @@ body {
     border-radius: 0px
 }
 
-@media screen and (max-width:865px){
+.emoji-picker__emojis {
+    overflow-x: hidden;
+}
+
+.emoji-picker__preview {
+    display: none !important;
+}
+
+@media screen and (max-width:865px) {
     .left {
         width: 50%;
     }
@@ -287,7 +296,7 @@ body {
     #app {
         width: 100%;
         height: 100%;
-        margin:0;
+        margin: 0;
     }
 
 
@@ -305,7 +314,7 @@ body {
     }
 
     .chatback {
-        display:inline-block;
+        display: inline-block;
     }
 
     .container {
@@ -320,6 +329,7 @@ body {
     }
 
     .cnt-contact.active {
-        background-color: white; /* Non serve sulla versione mobile */
+        background-color: white;
+        /* Non serve sulla versione mobile */
     }
 }
