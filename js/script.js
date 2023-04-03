@@ -209,14 +209,9 @@ createApp({
                 "Hai sbagliato numero, qui risponde Samuel Panicucci",
             ]; //Array con varie risposte
             response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
-
-            //Per ogni contatto
-            //Se è visibile (quindi la nostra schermata attuale, nonché l'array collegato)
             this.contacts[this.activeChat].messages.push(newMessage); //Aggiungi newMessage
             this.textMessage = "";
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
-
-                //Inserisce messaggio ricevuto nell'array di chi stavi parlando (nel caso cambiassi chat prima del secondo di risposta)
                 this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
                 newReceived = {
                     date: this.timeNow,
@@ -224,27 +219,18 @@ createApp({
                     status: "received"
                 }
                 this.contacts[this.activeChat].messages.push(newReceived);
-
             }, 1000);
-
-
-
 
         },
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
         searchChat() {
-            if (this.nameSearch === "") {//Se non si sta cercando nulla
-                this.searchedContacts = this.contacts;//searchedContacts contiene tutto contacts
-            } else {
-                this.searchedContacts = this.contacts.filter(contact => {//Altrimenti filtra
-                    if (contact.name.toLowerCase().includes(this.nameSearch.toLowerCase())) {//Con il contenuto di nameSearch
-                        return true;
-                    }
+            this.searchedContacts = this.contacts.filter(contact => {//Altrimenti filtra
+                if (contact.name.toLowerCase().includes(this.nameSearch.toLowerCase()) || contact.name.includes()) {//Con il contenuto di nameSearch
+                    return true;
                 }
-                )
-            }
+            })
         },
         deleteMsg(i) {
             this.contacts[this.activeChat].messages.splice(i, 1)
