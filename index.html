@@ -103,7 +103,7 @@
                 <div class="chatbox">
                     <div class="messages d-flex flex-column mt-3 ">
                         <template v-for="(message,index) in contact.messages">
-                            <template v-if="contact.messages.length > 0 ">
+                            <template v-if="contact.messages.length > 0"> <!-- CON 1 FUNZIONA, CON 0 NO -->
                                 <div :class="{sended: message.status === 'sent', received: message.status === 'received' }"
                                     class="msg">
                                     {{message.message}}
