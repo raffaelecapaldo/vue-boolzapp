@@ -318,6 +318,10 @@ createApp({
     },
     mounted() {
         this.initializeEmoji();
+        for (contact of this.contacts) {
+            contact.lastSeen = contact.messages[contact.messages.length - 1].date;//Prendi automaticamente l'ultimo accesso dalla data dell'ultimo messaggio
+            //ad app montata
+        }
 
     }
 
