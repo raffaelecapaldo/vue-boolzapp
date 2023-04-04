@@ -40,7 +40,7 @@
                     <button @click="msgShow = !msgShow"><i class="me-3 fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="darkselection controls-icon msg-dropdown d-flex flex-column align-items-center justify-content-center"
                         :class="{msgshow : msgShow}">
-                        <button @click="darkToggle()" class="fs-5">Attiva DarkMode</button>
+                        <button @click="darkToggle()" class="fs-5">{{!darkmode ? "Attiva DarkMode" : "Disattiva DarkMode"}}</button>
                         <button @click="newMode = !newMode, msgShow = !msgShow" class="fs-5">Aggiungi contatto</button>
 
                     </div>
@@ -75,7 +75,7 @@
                     <input v-model="newUrl" type="text" class="form-control" placeholder="Link all'immagine" aria-label="Avatar URL" aria-describedby="basic-addon1">
                     
                   </div>
-                  <button @click="addContact()" type="button" class="btn btn-primary w-100">Aggiungi</button>
+                  <button :class="{disabled: (newName.trim().length <  1) || (newUrl.trim().length)  <  4}" @click="addContact()" type="button" class="btn btn-primary w-100">Aggiungi</button>
 
                 </div>
 
