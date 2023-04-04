@@ -125,6 +125,7 @@ body {
 .cnt-contact:hover,
 .cnt-contact.active {
     background-color: #e9ebeb !important;
+    color:black;
 }
 
 .contacts div:last-child {
@@ -168,7 +169,7 @@ body {
 }
 
 .msg-dropdown {
-    width: 130px;
+    width: 150px;
     height: 80px;
     position: absolute;
     right: -20px;
@@ -179,6 +180,11 @@ body {
     display: none !important;
 }
 
+.msg-dropdown.usercontrol {
+    width: fit-content;
+    height: fit-content;
+    font-size:1rem;
+}
 
 .msg-dropdown button {
     padding: 5px !important;

@@ -189,8 +189,8 @@ createApp({
             writing: false,
             darkmode:false,
             msgShow:false,
-            homeMode:true
-            
+            homeMode:true,
+            rightDropdown:false            
 
         }
     },
@@ -324,6 +324,15 @@ createApp({
             else {
             document.querySelector("body").className = "bgdefault"
             }
+        },
+        deleteAll() {
+            this.contacts[this.activeChat].messages = []; //Svuota array messaggi
+            this.rightDropdown = false;
+        },
+        deleteContact() {
+            this.contacts.splice(this.activeChat, 1);
+            this.rightDropdown = false;
+            this.homeMode = true;
         }
     },
     created() {

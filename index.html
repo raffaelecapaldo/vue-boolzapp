@@ -62,23 +62,23 @@
                         aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="contacts" :class="{'darktheme': darkmode}">
-                <div @click="showChat(contact.id - 1)" v-for="(contact,index) in searchedContacts" :key="contact.id"
-                    :class="{ active: contact.id - 1 === activeChat && !homeMode}"
+            <div class="contacts" :class="{'darktheme': darkmode}" >
+                <div @click="showChat(contact?.id - 1)" v-for="(contact,index) in searchedContacts" :key="contact?.id"
+                    :class="{ active: contact?.id - 1 === activeChat && !homeMode}"
                     class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
-                            <img class="c-avatar" :src="contact.avatar" alt="">
+                            <img class="c-avatar" :src="contact?.avatar" alt="">
                         </div>
                         <div class="contact-info ms-4 ntf-text">
-                            <h5 class="fs-5">{{contact.name}}</h5>
-                            <p class="small text-lightgrey">{{contact.messages[contact?.messages.length - 1]?.message ?
-                                contact.messages[contact?.messages.length - 1]?.message : "Nessun ultimo messaggio"}}
+                            <h5 class="fs-5">{{contact?.name}}</h5>
+                            <p class="small text-lightgrey">{{contact?.messages[contact?.messages?.length - 1]?.message ?
+                                contact?.messages[contact?.messages?.length - 1]?.message : "Nessun ultimo messaggio"}}
                             </p>
                         </div>
                     </div>
                     <div class="right-contact pe-2 pt-1 small text-lightgrey">
-                        <span>{{contact?.messages[contact?.messages.length - 1]?.date.substring(11, 16)}}</span>
+                        <span>{{contact?.messages[contact?.messages?.length - 1]?.date.substring(11, 16)}}</span>
                     </div>
                 </div>
 
@@ -150,23 +150,27 @@
                             <div class="contact-picture">
                                 <button @click="mobilechatSelected = false" class="chatback me-2"><i
                                         class="p-2 fa-solid fa-angle-left"></i></button>
-                                <img class="ui-avatar" :src="contacts[activeChat].avatar"
-                                    :alt="contacts[activeChat].name">
+                                <img class="ui-avatar" :src="contacts[activeChat]?.avatar"
+                                    :alt="contacts[activeChat]?.name">
                             </div>
                             <div class="contact-info ms-3  mt-2 ">
-                                <h5 class="fs-6">{{contacts[activeChat].name}}</h5>
+                                <h5 class="fs-6">{{contacts[activeChat]?.name}}</h5>
                                 <p class="small text-secondary">Visto l'ultima volta il
                                 <p class="small text-secondary time">
                                     {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' :
-                                    contacts[activeChat].lastSeen}}</p>
+                                    contacts[activeChat]?.lastSeen}}</p>
                                 </p>
 
                             </div>
                         </div>
-                        <div class="controls-icon fs-4 ">
+                        <div class="controls-icon fs-4 position-relative ">
                             <button><i class="me-3 fa-solid fa-magnifying-glass"></i></button>
                             <button><i class="me-4 fa-solid fa-paperclip "></i></button>
-                            <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            <button @click="rightDropdown = !rightDropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            <div class="controls-icon usercontrol msg-dropdown d-flex justify-content-center flex-column gap-2" :class="{msgshow: rightDropdown}">
+                            <button @click="deleteAll()">Cancella tutti i messaggi</button>
+                            <button @click="deleteContact()">Cancella il contatto</button>
+                        </div>
                         </div>
                     </div>
 
@@ -182,8 +186,8 @@
                                 class="arrow-msg text-lightgrey"><i class="fa-solid fa-caret-down"></i></span>
                             <div class="controls-icon msg-dropdown d-flex justify-content-center flex-column gap-2"
                                 :class="{msgshow: message.dropdown}">
-                                <button>Message info</button>
-                                <button @click="deleteMsg(index)">Delete message</button>
+                                <button>Info messaggio</button>
+                                <button @click="deleteMsg(index)">Cancella messaggio</button>
                             </div>
                         </div>
 
