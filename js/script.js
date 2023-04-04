@@ -188,13 +188,15 @@ createApp({
             activeChat: 0,
             writing: false,
             darkmode:false,
-            msgShow:false
+            msgShow:false,
+            homeMode:true
             
 
         }
     },
     methods: {
         showChat(key) {
+            this.homeMode = false;
             this.activeChat = key;
             this.mobilechatSelected = true;
         },
