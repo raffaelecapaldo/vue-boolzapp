@@ -193,7 +193,7 @@ createApp({
             rightDropdown: false,
             newMode: false,
             newName: "",
-            newUrl: ""
+            newUrl: "",
 
         }
     },
@@ -349,6 +349,7 @@ createApp({
                 name: this.newName,
                 avatar: this.newUrl,
                 visible: true,
+                lastSeen: 'never',
                 messages: []
         }
         this.contacts.push(newContact);//Pusha

@@ -70,11 +70,18 @@
                     <span class="input-group-text" id="basic-addon1">Nome</span>
                     <input v-model="newName" type="text" class="form-control" placeholder="Nome del contatto" aria-label="Nome" aria-describedby="basic-addon1">
                   </div>
-                  <div class="input-group mb-3 w-50">
+                  <div :class="{'d-none': newUrl === 'img/uni.jpg'|| newUrl === 'img/menprofile.jpg'}" class="input-group mb-3 w-50">
                     <span class="input-group-text" id="url">Avatar URL</span>
-                    <input v-model="newUrl" type="text" class="form-control" placeholder="Link all'immagine" aria-label="Avatar URL" aria-describedby="basic-addon1">
+                    <input  v-model="newUrl" type="text" class="form-control" placeholder="Link all'immagine" aria-label="Avatar URL" aria-describedby="basic-addon1">
                     
                   </div>
+                  <div class="default-images controls-icon d-flex justify-content-center align-items-center gap-2 mb-2">
+                    <button  @click="(newUrl === 'img/uni.jpg') ? newUrl = '' : newUrl = 'img/uni.jpg'" ><img class="avatar" :class="{imageSelected: newUrl === 'img/uni.jpg'}" src="img/uni.jpg" alt=""></button>
+                    <button  @click="(newUrl === 'img/menprofile.jpg') ? newUrl = '' : newUrl = 'img/menprofile.jpg'"> <img  :class="{imageSelected: newUrl === 'img/menprofile.jpg'}" class="avatar" src="img/menprofile.jpg" alt=""></button>
+                    
+
+                  </div>
+                  <p class="text-center">Come nuova immagine di profilo puoi scegliere una tra le due di default qui sopra, o inserire un link a una tua immagine personalizzata</p>
                   <button :class="{disabled: (newName.trim().length <  1) || (newUrl.trim().length)  <  4}" @click="addContact()" type="button" class="btn btn-primary w-100">Aggiungi</button>
 
                 </div>
@@ -177,7 +184,7 @@
                                 <h5 class="fs-6">{{contacts[activeChat]?.name}}</h5>
                                 <p class="small text-secondary">Visto l'ultima volta il
                                 <p class="small text-secondary time">
-                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' :
+                                    {{contacts[activeChat]?.lastSeen === 'never' ? 'Non hai mai effettuato il login da quando siete amici' : writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' :
                                     contacts[activeChat]?.lastSeen}}</p>
                                 </p>
 

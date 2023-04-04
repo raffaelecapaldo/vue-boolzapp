@@ -220,6 +220,10 @@ body {
     font-size: 11px;
 }
 
+.imageSelected {
+    border:5px solid green;
+}
+
 .sended {
     align-self: flex-end;
     background-color: #d5f9ba;
