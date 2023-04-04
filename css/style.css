@@ -110,11 +110,12 @@ body {
 .cnt-contact {
     border-bottom: 1px solid #f1f2f5d3;
     cursor: pointer;
+    z-index: 10000;
 }
 
 .cnt-contact:hover,
 .cnt-contact.active {
-    background-color: #e9ebeb;
+    background-color: #e9ebeb !important;
 }
 
 .contacts div:last-child {
@@ -358,7 +359,7 @@ body {
 }
 
 .bgblack {
-    background-color: #233946 !important;
+    background-color: #233946;
 }
 
 .bgdefault {

@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/vue.global.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
 
@@ -62,7 +62,7 @@
             </div>
             <div class="contacts" :class="{'darktheme': darkmode}">
                 <div @click="showChat(contact.id - 1)" v-for="(contact,index) in searchedContacts" :key="contact.id"
-                    :class="{active: contact.id - 1 === activeChat}" class="cnt-contact d-flex justify-content-between">
+                    :class="{activewhite: contact.id - 1 === activeChat && darkmode,active: contact.id - 1 === activeChat}" class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center" :class="{darktheme: darkmode}">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
