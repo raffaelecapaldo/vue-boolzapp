@@ -63,8 +63,8 @@
                 </div>
             </div>
             <div class="contacts" :class="{'darktheme': darkmode}" >
-                <div @click="showChat(contact?.id - 1)" v-for="(contact,index) in searchedContacts" :key="contact?.id"
-                    :class="{ active: contact?.id - 1 === activeChat && !homeMode}"
+                <div @click="showChat(index)" v-for="(contact,index) in searchedContacts"
+                    :class="{ active: index === activeChat && !homeMode}"
                     class="cnt-contact d-flex justify-content-between">
                     <div class="ps-4 contact py-2 container d-flex align-items-center">
                         <div class="contact-picture">
