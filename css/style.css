@@ -125,6 +125,7 @@ body {
 .contacts {
     overflow-y: auto;
     height: calc(100% - (229px));
+    background-color: white;
 }
 
 .ui-avatar {
@@ -335,4 +336,18 @@ body {
         background-color: white;
         /* Non serve sulla versione mobile */
     }
+}
+
+.darktheme {
+    background-color: #111b21;
+    color:white;
+    
+}
+
+.borderleft {
+    border-left: 1px solid #d6d6d6;
+}
+
+.darkimg {
+    background-image: url('../img/mineblack.jpg') !important;
 }

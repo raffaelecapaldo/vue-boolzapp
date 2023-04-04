@@ -105,7 +105,7 @@
                     </div>
 
                 </div>
-                <div class="chatbox">
+                <div class="chatbox" :class="{darkimg: darkmode}">
                     <div class="messages d-flex flex-column mt-3 ">
                         <div v-for="(message,index) in contacts[activeChat]?.messages" ref="messages"
                             :class="{sended: message.status === 'sent', received: message.status === 'received' }"class="msg">
