@@ -65,7 +65,10 @@
                 </div>
             </div>
             <div v-show="newMode" :class="{darktheme: darkmode}" class="add contacts pt-3">
-                <div class="container d-flex justify-content-center flex-column align-items-center">
+                <div class="container d-flex justify-content-center flex-column align-items-center position-relative">
+                    <div @click="this.newMode = false" class="controls-icon position-absolute backtocontacts d-flex justify-content-center align-items-center">
+                        <button><i class="text-white fa-sharp fa-solid fa-backward-step"></i></button>
+                    </div>
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text" id="basic-addon1">Nome</span>
                     <input v-model="newName" type="text" class="form-control" placeholder="Nome del contatto" aria-label="Nome" aria-describedby="basic-addon1">

@@ -198,6 +198,18 @@ body {
     background-color: rgb(204, 204, 204);
 }
 
+.backtocontacts {
+    width: 30px;
+    height: 30px;
+    top:0;
+    left:30px;
+    border:5px solid grey;
+    border-radius:50%;
+    padding:20px;
+    background-color: black;
+    cursor:pointer;
+}
+
 .msg {
     margin-top: 20px;
     margin-bottom: 5px;
