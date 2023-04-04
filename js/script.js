@@ -186,7 +186,8 @@ createApp({
             searchedContacts: [{}],
             mobilechatSelected: false,
             activeChat: 0,
-            writing: false
+            writing: false,
+            
 
         }
     },
@@ -266,7 +267,8 @@ createApp({
             this.textMessage = "";
             this.writing = "start";//Sta scrivendo
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
-                this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta
+                this.timeNow = this.contacts[this.activeChat].lastSeen = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta e salvala anche nel lastSeen da usare
+                //per tenere salvato l'orario di accesso anche se si cancellano i messaggi
                 newReceived = {
                     date: this.timeNow,
                     message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
@@ -274,6 +276,7 @@ createApp({
                 }
                 this.contacts[this.activeChat].messages.push(newReceived);
                 this.writing = "ended"//Ha finito di scrivere (Online)
+                 //Aggiungi al contatto ultimo login
             }, 1000);
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                 this.writing = false;//Ha effettuato logout (mostra)

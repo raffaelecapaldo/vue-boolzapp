@@ -66,7 +66,7 @@
                         </div>
                         <div class="contact-info ms-4 ntf-text">
                             <h5 class="fs-5">{{contact.name}}</h5>
-                            <p class="small text-lightgrey">{{contact?.messages[contact?.messages.length - 1]?.message}}
+                            <p class="small text-lightgrey">{{contact.messages[contact?.messages.length - 1]?.message ? contact.messages[contact?.messages.length - 1]?.message : "Nessun ultimo messaggio"}}
                             </p>
                         </div>
                     </div>
@@ -92,8 +92,7 @@
                                 <h5 class="fs-6">{{contacts[activeChat].name}}</h5>
                                 <p class="small text-secondary">Visto l'ultima volta il
                                 <p class="small text-secondary time">
-                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' :
-                                    contacts[activeChat]?.messages[contacts[activeChat]?.messages.length - 1]?.date}}</p>
+                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' : contacts[activeChat].lastSeen ? contacts[activeChat].lastSeen : contacts[activeChat]?.messages[contacts[activeChat]?.messages.length - 1]?.date}}</p>
                                 </p>
 
                             </div>
@@ -110,7 +109,7 @@
                     <div class="messages d-flex flex-column mt-3 ">
                         <div v-for="(message,index) in contacts[activeChat]?.messages" ref="messages"
                             :class="{sended: message.status === 'sent', received: message.status === 'received' }"class="msg">
-                            {{message?.message}}
+                            {{message.message}}
                             <span class="time-msg text-lightgrey">{{message?.date.substring(11, 16)}}</span>
                             <span @click="message.dropdown = !message.dropdown" @click
                                 class="arrow-msg text-lightgrey"><i class="fa-solid fa-caret-down"></i></span>
