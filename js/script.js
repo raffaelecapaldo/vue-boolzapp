@@ -193,15 +193,23 @@ createApp({
             rightDropdown: false,
             newMode: false,
             newName: "",
-            newUrl: "",
+            newUrl: ""
 
         }
     },
     methods: {
         showChat(i) {
             this.homeMode = false;
-            this.activeChat = i;
+            this.activeChat = this.contacts.findIndex(contact => {
+                if (contact.id === i) {//Gestione tramite index degli ID
+                    return true;
+                }
+            })
             this.mobilechatSelected = true;
+            for (contact of this.contacts) {
+                contact.visible = false;
+            }
+            this.contacts[this.activeChat].visible = true;//Attivazione highlight chat cliccata 
         },
         sendMessage() {
             this.timeNow = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Data formattata come quella già presente nell'array principale
