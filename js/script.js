@@ -342,10 +342,10 @@ createApp({
             //Recupera ultimo id usato
             for (contact of this.contacts) {
                 lastId = contact.id //Alla fine del ciclo avrà ultimo id
-            }
-            newId = lastId++;
+            }   lastId++;
+   
             newContact = {
-                id: newId,
+                id: lastId,
                 name: this.newName,
                 avatar: this.newUrl,
                 visible: true,
@@ -353,6 +353,8 @@ createApp({
         }
         this.contacts.push(newContact);//Pusha
         this.newMode = false;//Ritorna indietro nella grafica
+        this.newName = "";
+        this.newUrl = "";
     }
         },
         created() {
