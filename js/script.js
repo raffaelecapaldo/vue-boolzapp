@@ -1,5 +1,14 @@
+const appHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
+window.addEventListener('resize', appHeight)
+appHeight() //Non riuscivo a vedere la pagina interamente su mobile a causa della UI del browser
+//soluzione da StackOverflow
+
+
+
 const DateTime = luxon.DateTime;
-const {createApp} = Vue
+const {
+    createApp
+} = Vue
 
 
 
@@ -268,6 +277,10 @@ createApp({
             }, 1000);
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                 this.writing = false;//Ha effettuato logout (mostra)
+                this.$nextTick(() => {
+                    this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView()
+                
+                })
 
             }, 3000);
 

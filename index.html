@@ -109,7 +109,7 @@
                 <div class="chatbox">
                     <div class="messages d-flex flex-column mt-3 ">
                         <template v-for="(message,index) in contacts[activeChat].messages">
-                            <div :class="{sended: message.status === 'sent', received: message.status === 'received' }"
+                            <div ref="messages" :class="{sended: message.status === 'sent', received: message.status === 'received' }"
                                 class="msg">
                                 {{message.message}}
                                 <span class="time-msg text-lightgrey">{{message.date.substring(11, 16)}}</span>
