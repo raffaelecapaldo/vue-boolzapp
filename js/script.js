@@ -187,7 +187,8 @@ createApp({
             mobilechatSelected: false,
             activeChat: 0,
             writing: false,
-            darkmode:true
+            darkmode:false,
+            msgShow:false
             
 
         }
@@ -311,6 +312,16 @@ createApp({
             button.addEventListener('click', () => {
                 picker.togglePicker(button);
             });
+        },
+        darkToggle() {
+            this.darkmode = !this.darkmode;
+            this.msgShow = !this.msgShow;
+            if (this.darkmode) {//Usato queryselector per prendere il body fuori dall'app
+            document.querySelector("body").className = "bgblack"
+            }
+            else {
+            document.querySelector("body").className = "bgdefault"
+            }
         }
     },
     created() {
