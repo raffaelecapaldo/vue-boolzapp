@@ -28,7 +28,7 @@
 <body>
     <div id="app" class="d-flex justify-content-center">
         <div class="left " :class="{mobilenone: mobilechatSelected}">
-            <div class="top-bar py-3 container-fluid d-flex justify-content-between align-items-center">
+            <div class="top-bar py-3 container-fluid d-flex justify-content-between align-items-center" :class="{darktheme: darkmode}">
                 <div class="user-profile">
                     <img class="avatar" src="img/avatar_io.jpg" alt="">
                     <span class="ms-2 fw-bold">Raffa</span>
@@ -49,7 +49,7 @@
                     <a class="small text-secondary" href="">Attiva notifiche desktop</a>
                 </div>
             </div>
-            <div class="container search py-2">
+            <div class="container search py-2" :class="{darktheme: darkmode}">
                 <div class="input-group">
                     <span class="input-group-text" id="my-search"><i class="fa-solid fa-magnifying-glass"></i></span>
                     <input @keyup="searchChat() " v-model="nameSearch " type="text" id="my-input" class="form-control"
@@ -57,10 +57,10 @@
                         aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="contacts bg-white">
+            <div class="contacts" :class="{'darktheme': darkmode}">
                 <div @click="showChat(contact.id - 1)" v-for="(contact,index) in searchedContacts" :key="contact.id"
                     :class="{active: contact.id - 1 === activeChat}" class="cnt-contact d-flex justify-content-between">
-                    <div class="ps-4 contact py-2 container d-flex align-items-center">
+                    <div class="ps-4 contact py-2 container d-flex align-items-center" :class="{darktheme: darkmode}">
                         <div class="contact-picture">
                             <img class="c-avatar" :src="contact.avatar" alt="">
                         </div>
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="right-contact pe-2 pt-1 small text-lightgrey">
+                    <div class="right-contact pe-2 pt-1 small text-lightgrey" :class="{darktheme: darkmode}">
                         <span>{{contact?.messages[contact?.messages.length - 1]?.date.substring(11, 16)}}</span>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
         </div>
         <div class="right" :class="{mobilenone: !mobilechatSelected}">
             <div class="boxChat">
-                <div class="top-bar py-3 container-fluid d-flex align-items-center justify-content-between">
+                <div class="top-bar py-3 container-fluid d-flex align-items-center justify-content-between" :class="{darktheme: darkmode}">
                     <div class="ps-1 contact py-2 container d-flex justify-content-between align-items-center">
                         <div class="chat-contact d-flex align-items-center">
                             <div class="contact-picture">
@@ -123,7 +123,7 @@
                     </div>
 
                 </div>
-                <div class="sendmsg-ui d-flex align-items-center container justify-content-center">
+                <div :class="{darktheme: darkmode, borderleft: darkmode}" class="sendmsg-ui d-flex align-items-center container justify-content-center">
                     <div class="controls-icon">
                         <button ref="emoji" id="emoji-button"><i class="fa-regular fa-face-smile fs-3"></i></button>
                     </div>

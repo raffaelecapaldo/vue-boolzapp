@@ -187,6 +187,7 @@ createApp({
             mobilechatSelected: false,
             activeChat: 0,
             writing: false,
+            darkmode:true
             
 
         }
