@@ -38,9 +38,11 @@
                     <button><i class="me-3 fa-solid fa-circle-notch"></i></button>
                     <button><i class="me-4 fa-solid fa-message"></i></button>
                     <button @click="msgShow = !msgShow"><i class="me-3 fa-solid fa-ellipsis-vertical"></i></button>
-                    <div class="darkselection controls-icon msg-dropdown d-flex align-items-center justify-content-center"
+                    <div class="darkselection controls-icon msg-dropdown d-flex flex-column align-items-center justify-content-center"
                         :class="{msgshow : msgShow}">
-                        <button @click="darkToggle()" class="fs-5">Toggle DarkMode</button>
+                        <button @click="darkToggle()" class="fs-5">Attiva DarkMode</button>
+                        <button @click="newMode = !newMode, msgShow = !msgShow" class="fs-5">Aggiungi contatto</button>
+
                     </div>
                 </div>
 
@@ -62,7 +64,25 @@
                         aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="contacts" :class="{'darktheme': darkmode}" >
+            <div v-show="newMode" class="add contacts mt-3">
+                <div class="container d-flex justify-content-center flex-column align-items-center">
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text" id="basic-addon1">Nome</span>
+                    <input v-model="newName" type="text" class="form-control" placeholder="Username" aria-label="Nome" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3 w-50">
+                    <span class="input-group-text" id="url">Avatar URL</span>
+                    <input v-model="newUrl" type="text" class="form-control" placeholder="Username" aria-label="Avatar URL" aria-describedby="basic-addon1">
+                    
+                  </div>
+                  <button @click="addContact()" type="button" class="btn btn-primary w-100">Aggiungi</button>
+
+                </div>
+
+
+
+            </div>
+            <div class="contacts" v-show="!newMode" :class="{'darktheme': darkmode}" >
                 <div @click="showChat(index)" v-for="(contact,index) in searchedContacts"
                     :class="{ active: index === activeChat && !homeMode}"
                     class="cnt-contact d-flex justify-content-between">

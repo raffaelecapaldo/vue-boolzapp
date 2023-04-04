@@ -187,11 +187,13 @@ createApp({
             mobilechatSelected: false,
             activeChat: 0,
             writing: false,
-            darkmode:false,
-            msgShow:false,
-            homeMode:true,
-            rightDropdown:false,
-            increase: 1         
+            darkmode: false,
+            msgShow: false,
+            homeMode: true,
+            rightDropdown: false,
+            newMode: false,
+            newName: "",
+            newUrl: ""
 
         }
     },
@@ -281,13 +283,13 @@ createApp({
                 }
                 this.contacts[this.activeChat].messages.push(newReceived);
                 this.writing = "ended"//Ha finito di scrivere (Online)
-                 //Aggiungi al contatto ultimo login
+                //Aggiungi al contatto ultimo login
             }, 1000);
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
                 this.writing = false;//Ha effettuato logout (mostra)
                 this.$nextTick(() => {
                     this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView()
-                
+
                 })
 
             }, 3000);
@@ -320,10 +322,10 @@ createApp({
             this.darkmode = !this.darkmode;
             this.msgShow = !this.msgShow;
             if (this.darkmode) {//Usato queryselector per prendere il body fuori dall'app
-            document.querySelector("body").className = "bgblack"
+                document.querySelector("body").className = "bgblack"
             }
             else {
-            document.querySelector("body").className = "bgdefault"
+                document.querySelector("body").className = "bgdefault"
             }
         },
         deleteAll() {
@@ -334,21 +336,38 @@ createApp({
             this.contacts.splice(this.activeChat, 1);
             this.rightDropdown = false;
             this.homeMode = true;
+        },
+        addContact() {
+            
+            //Recupera ultimo id usato
+            for (contact of this.contacts) {
+                lastId = contact.id //Alla fine del ciclo avrà ultimo id
+            }
+            newId = lastId++;
+            newContact = {
+                id: newId,
+                name: this.newName,
+                avatar: this.newUrl,
+                visible: true,
+                messages: []
         }
-    },
-    created() {
-        this.searchedContacts = this.contacts//Alla creazione, searchedContacts diventa contacts
-
-    },
-    mounted() {
-        this.initializeEmoji();
-        for (contact of this.contacts) {
-            contact.lastSeen = contact.messages[contact.messages.length - 1].date;//Prendi automaticamente l'ultimo accesso dalla data dell'ultimo messaggio
-            //ad app montata
-        }
-
+        this.contacts.push(newContact);//Pusha
+        this.newMode = false;//Ritorna indietro nella grafica
     }
+        },
+        created() {
+            this.searchedContacts = this.contacts//Alla creazione, searchedContacts diventa contacts
 
-}).mount('#app')
+        },
+        mounted() {
+            this.initializeEmoji();
+            for (contact of this.contacts) {
+                contact.lastSeen = contact.messages[contact.messages.length - 1].date;//Prendi automaticamente l'ultimo accesso dalla data dell'ultimo messaggio
+                //ad app montata
+            }
+
+        }
+
+    }).mount('#app')
 
 
