@@ -110,7 +110,6 @@ body {
 .cnt-contact {
     border-bottom: 1px solid #f1f2f5d3;
     cursor: pointer;
-    z-index: 10000;
 }
 
 .cnt-contact:hover,
@@ -261,6 +260,38 @@ body {
     display: block;
 }
 
+/* DARK MODE */
+
+.darktheme {
+    background-color: #111b21;
+    color:white;
+    
+}
+
+.borderleft {
+    border-left: 1px solid #d6d6d6;
+}
+
+.darkimg {
+    background-image: url('../img/mineblack.jpg') !important;
+}
+
+.darkselection.msg-dropdown {
+    width: fit-content;
+    height: fit-content;
+    margin:0 auto;
+}
+
+.bgblack {
+    background-color: #233946;
+}
+
+.bgdefault {
+    background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
+}
+
+/* EXTRA */
+
 ::-webkit-scrollbar {
     width: 5px
 }
@@ -282,6 +313,8 @@ body {
 .emoji-picker__preview {
     display: none !important;
 }
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width:865px) {
     .left {
@@ -338,30 +371,3 @@ body {
     }
 }
 
-.darktheme {
-    background-color: #111b21;
-    color:white;
-    
-}
-
-.borderleft {
-    border-left: 1px solid #d6d6d6;
-}
-
-.darkimg {
-    background-image: url('../img/mineblack.jpg') !important;
-}
-
-.darkselection.msg-dropdown {
-    width: fit-content;
-    height: fit-content;
-    margin:0 auto;
-}
-
-.bgblack {
-    background-color: #233946;
-}
-
-.bgdefault {
-    background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
-}
