@@ -36,8 +36,8 @@
                 </div>
                 <div class="controls-icon fs-4 position-relative">
                     <button><i class="me-3 fa-solid fa-circle-notch"></i></button>
-                    <button><i class="me-4 fa-solid fa-message"></i></button>
-                    <button class="hover-button" @click="msgShow = !msgShow"><i class="me-3 fa-solid fa-ellipsis-vertical"></i></button>
+                    <button><i class="fa-solid fa-message"></i></button>
+                    <button class="hover-button" @click="msgShow = !msgShow"><i class="me-3 ps-4 fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="darkselection controls-icon msg-dropdown d-flex flex-column align-items-center justify-content-center"
                         :class="{msgshow : msgShow}">
                         <button @click="darkToggle()" class="fs-5">{{!darkmode ? "Attiva DarkMode" : "Disattiva DarkMode"}}</button>
@@ -195,8 +195,8 @@
                         </div>
                         <div class="controls-icon fs-4 position-relative ">
                             <button><i class="me-3 fa-solid fa-magnifying-glass"></i></button>
-                            <button><i class="me-4 fa-solid fa-paperclip "></i></button>
-                            <button class="hover-button" @click="rightDropdown = !rightDropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            <button><i class="fa-solid fa-paperclip "></i></button>
+                            <button class=" ps-4 hover-button" @click="rightDropdown = !rightDropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                             <div class="controls-icon usercontrol msg-dropdown d-flex justify-content-center flex-column gap-2" :class="{msgshow: rightDropdown}">
                             <button @click="deleteAll()">Cancella tutti i messaggi</button>
                             <button @click="deleteContact()">Cancella il contatto</button>

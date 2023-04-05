@@ -210,6 +210,10 @@ body {
     cursor:pointer;
 }
 
+.hover-button:hover .fa-ellipsis-vertical {
+    color:#009688;
+}
+
 .msg {
     margin-top: 20px;
     margin-bottom: 5px;
