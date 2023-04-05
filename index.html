@@ -186,7 +186,7 @@
                                 <h5 class="fs-6">{{contacts[activeChat]?.name}}</h5>
                                 <p class="small text-secondary">Visto l'ultima volta
                                 <p class="small text-secondary time">
-                                    {{writing === 'start' ? 'Sta scrivendo...' : writing === 'ended' ? 'Online' : contacts[activeChat]?.lastSeen?.includes(today) ? 'Oggi ore ' + contacts[activeChat]?.lastSeen?.split(" ")[1] : contacts[activeChat]?.lastSeen  === 'never' ? 'Non ha mai effettuato il login da quando siete amici' :  contacts[activeChat]?.lastSeen   }}</p>
+                                    {{contacts[activeChat]?.writing === 'start' ? 'Sta scrivendo...' : contacts[activeChat]?.writing === 'ended' ? 'Online' : contacts[activeChat]?.lastSeen?.includes(today) ? 'Oggi ore ' + contacts[activeChat]?.lastSeen?.split(" ")[1] : contacts[activeChat]?.lastSeen  === 'never' ? 'Non ha mai effettuato il login da quando siete amici' :  contacts[activeChat]?.lastSeen   }}</p>
                                 </p>
 
                             </div>

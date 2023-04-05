@@ -186,7 +186,6 @@ createApp({
             searchedContacts: [{}],
             mobilechatSelected: false,
             activeChat: 0,
-            writing: false,
             darkmode: false,
             msgShow: false,
             homeMode: true,
@@ -195,6 +194,7 @@ createApp({
             newName: "",
             newUrl: "",
             today:DateTime.local().toFormat('dd/MM/yyyy'),
+            savedId:0,
 
         }
     },
@@ -280,23 +280,24 @@ createApp({
             ]; //Array con varie risposte
             response = this.getRndInteger(0, responses.length - 1) //Genera indice casuale 
             this.contacts[this.activeChat].messages.push(newMessage); //Aggiungi newMessage
+            this.savedId = this.activeChat;//Valore salvato per la risposta del "bot"
             this.textMessage = "";
-            this.writing = "start";//Sta scrivendo
+            this.contacts[this.activeChat].writing = "start";//Sta scrivendo
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
-                this.timeNow = this.contacts[this.activeChat].lastSeen = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta e salvala anche nel lastSeen da usare
+                this.timeNow = this.contacts[this.savedId].lastSeen = DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss');//Aggiorna la data per la risposta e salvala anche nel lastSeen da usare
                 //per tenere salvato l'orario di accesso anche se si cancellano i messaggi
                 newReceived = {
                     date: this.timeNow,
                     message: responses[response], //Aggiungi il messaggio randomico (dall'indice estratto)
                     status: "received"
                 }
-                this.contacts[this.activeChat].messages.push(newReceived);
+                this.contacts[this.savedId].messages.push(newReceived);
                 this.saveStorage();
-                this.writing = "ended"//Ha finito di scrivere (Online)
+                this.contacts[this.savedId].writing = "ended"//Ha finito di scrivere (Online)
                 //Aggiungi al contatto ultimo login
             }, 1000);
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
-                this.writing = false;//Ha effettuato logout (mostra)
+                this.contacts[this.savedId].writing = false;//Ha effettuato logout (mostra)
                 this.$nextTick(() => {
                     this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView()
 
@@ -367,7 +368,7 @@ createApp({
         this.saveStorage();
     },
         saveStorage() {
-            localStorage.setItem('contacts', JSON.stringify(this.contacts));
+            localStorage.setItem('mycontacts', JSON.stringify(this.contacts));
         }
         },
         computed: {
@@ -390,11 +391,11 @@ createApp({
                 contact.lastSeen = contact.messages[contact.messages.length - 1].date;//Prendi automaticamente l'ultimo accesso dalla data dell'ultimo messaggio
                 //ad app montata
             }
-            if (localStorage.getItem('contacts') === null ) {
+            if (localStorage.getItem('mycontacts') === null ) {
                 return
             }
             else {
-                this.contacts = JSON.parse(localStorage.getItem('contacts'));
+                this.contacts = JSON.parse(localStorage.getItem('mycontacts'));
                 this.searchedContacts = this.contacts;
 
             }
