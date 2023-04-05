@@ -306,13 +306,6 @@ createApp({
         getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
-        searchChat() {
-            this.searchedContacts = this.contacts.filter(contact => {//Altrimenti filtra
-                if (contact.name.toLowerCase().includes(this.nameSearch.toLowerCase()) || contact.name.includes()) {//Con il contenuto di nameSearch
-                    return true;
-                }
-            })
-        },
         deleteMsg(i) {
             this.contacts[this.activeChat].messages.splice(i, 1)
         },
@@ -344,6 +337,8 @@ createApp({
             this.contacts.splice(this.activeChat, 1);
             this.rightDropdown = false;
             this.homeMode = true;
+            this.nameSearch = "";
+            this.searchedContacts = this.contacts; //Forza il rendering
         },
         addContact() {
             
@@ -365,6 +360,16 @@ createApp({
         this.newName = "";
         this.newUrl = "";
     }
+        },
+        computed: {
+            searchChat() {
+                this.searchedContacts = this.contacts.filter(contact => {
+                    if (contact.name.toLowerCase().includes(this.nameSearch.toLowerCase()) || contact.name.includes()) {//Con il contenuto di nameSearch
+                        return true;
+                    }
+                })
+            },
+
         },
         created() {
             this.searchedContacts = this.contacts//Alla creazione, searchedContacts diventa contacts
