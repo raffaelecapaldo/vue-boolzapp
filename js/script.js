@@ -356,7 +356,7 @@ createApp({
                 id: lastId,
                 name: this.newName,
                 avatar: this.newUrl,
-                visible: true,
+                visible: false,
                 lastSeen: 'never',
                 messages: []
         }
