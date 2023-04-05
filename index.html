@@ -102,8 +102,7 @@
                         </div>
                         <div class="contact-info ms-4 ntf-text">
                             <h5 class="fs-5">{{contact?.name}}</h5>
-                            <p class="small text-lightgrey">{{contact?.messages[contact?.messages?.length - 1]?.message ?
-                                contact?.messages[contact?.messages?.length - 1]?.message : "Nessun ultimo messaggio"}}
+                            <p class="small text-lightgrey">{{(contact?.messages[contact?.messages?.length - 1]?.message?.length) > 40 ? contact?.messages[contact?.messages?.length - 1]?.message.slice(0, 40) + '&hellip;' : contact?.messages[contact?.messages?.length - 1]?.message ? contact?.messages[contact?.messages?.length - 1]?.message : "Nessun ultimo messaggio"}}
                             </p>
                         </div>
                     </div>
