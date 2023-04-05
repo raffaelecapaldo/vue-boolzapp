@@ -193,7 +193,9 @@ createApp({
             rightDropdown: false,
             newMode: false,
             newName: "",
-            newUrl: ""
+            newUrl: "",
+            today:DateTime.local().toFormat('dd/MM/yyyy'),
+            yesterday: 
 
         }
     },
