@@ -290,6 +290,7 @@ createApp({
                     status: "received"
                 }
                 this.contacts[this.activeChat].messages.push(newReceived);
+                this.saveStorage();
                 this.writing = "ended"//Ha finito di scrivere (Online)
                 //Aggiungi al contatto ultimo login
             }, 1000);
@@ -308,6 +309,7 @@ createApp({
         },
         deleteMsg(i) {
             this.contacts[this.activeChat].messages.splice(i, 1)
+            this.saveStorage();
         },
         initializeEmoji() {
             const button = this.$refs.emoji;
@@ -332,6 +334,7 @@ createApp({
         deleteAll() {
             this.contacts[this.activeChat].messages = []; //Svuota array messaggi
             this.rightDropdown = false;
+            this.saveStorage();
         },
         deleteContact() {
             this.contacts.splice(this.activeChat, 1);
@@ -339,6 +342,7 @@ createApp({
             this.homeMode = true;
             this.nameSearch = "";
             this.searchedContacts = this.contacts; //Forza il rendering
+            this.saveStorage();
         },
         addContact() {
             
@@ -359,7 +363,11 @@ createApp({
         this.newMode = false;//Ritorna indietro nella grafica
         this.newName = "";
         this.newUrl = "";
-    }
+        this.saveStorage();
+    },
+        saveStorage() {
+            localStorage.setItem('contacts', JSON.stringify(this.contacts));
+        }
         },
         computed: {
             searchChat() {
@@ -381,7 +389,14 @@ createApp({
                 contact.lastSeen = contact.messages[contact.messages.length - 1].date;//Prendi automaticamente l'ultimo accesso dalla data dell'ultimo messaggio
                 //ad app montata
             }
+            if (localStorage.getItem('contacts') === null ) {
+                return
+            }
+            else {
+                this.contacts = JSON.parse(localStorage.getItem('contacts'));
+                this.searchedContacts = this.contacts;
 
+            }
         }
 
     }).mount('#app')
