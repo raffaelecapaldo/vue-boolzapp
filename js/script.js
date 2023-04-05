@@ -195,7 +195,6 @@ createApp({
             newName: "",
             newUrl: "",
             today:DateTime.local().toFormat('dd/MM/yyyy'),
-            yesterday: 
 
         }
     },
