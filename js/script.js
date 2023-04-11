@@ -300,11 +300,13 @@ createApp({
                 this.contacts[this.savedId].writing = false;//Ha effettuato logout (mostra)
                 this.$nextTick(() => {
                     this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView()
+                    this.saveStorage();
+
 
                 })
 
             }, 3000);
-            this.saveStorage();
+
 
         },
         getRndInteger(min, max) {
