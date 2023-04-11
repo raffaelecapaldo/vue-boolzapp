@@ -292,8 +292,8 @@ createApp({
                     status: "received"
                 }
                 this.contacts[this.savedId].messages.push(newReceived);
-                this.saveStorage();
                 this.contacts[this.savedId].writing = "ended"//Ha finito di scrivere (Online)
+                this.saveStorage();
                 //Aggiungi al contatto ultimo login
             }, 1000);
             setTimeout(() => { //Dopo 2 secondi, fai la stessa cosa ma con newReceived
@@ -304,6 +304,7 @@ createApp({
                 })
 
             }, 3000);
+            this.saveStorage();
 
         },
         getRndInteger(min, max) {
